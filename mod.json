@@ -1,0 +1,56 @@
+{
+	"geode": "4.0.0",
+	"gd": {
+		"win": "2.2074"
+	},
+	"id": "jumbonova.better_comment_section",
+	"name": "Better Comment Section",
+	"version": "v1.0.0",
+	"developer": "Jumbonova",
+	"description": "Hides spam comments from levels & lists.",
+	"links": {
+		"community": "https://discord.gg/SKKu5NdMJv",
+		"source": "https://github.com/JumbonovaYT/Better-Comment-Section-GEODE-MOD-"
+	},
+	"dependencies": [ {
+        "id": "geode.node-ids",
+        "version": ">=v1.14.1",
+        "importance": "required"
+	} ],
+	"settings": {
+		"Features": {
+			"type": "title",
+			"name": "Features",
+			"description": "Enable/disable features on this mod."
+		},
+		"Hide bot comments": {
+			"type": "bool",
+			"name": "Hide bot comments",
+			"default": true,
+			"description": "Hides bot comments, like comments from 3eelol or Hahayeahbot. This features only hides known bot commenters."
+		},
+		"Hide brainrot comments": {
+			"type": "bool",
+			"name": "Hide brainrot comments",
+			"default": false,
+			"description": "Hides comments that contain brainrot keywords, like 'skibidi' and 'only in ohio'. This features is a little funny joke I thought of while adding settings."
+		},
+		"Hide ads": {
+			"type": "bool",
+			"name": "Hide ads",
+			"default": true,
+			"description": "Hides comments that ask people to play levels they made."
+		},
+		"Extra stuff": {
+			"type": "title",
+			"name": "Extra stuff",
+			"description": "Extra settings fot the mod."
+		},
+		"Log actions": {
+			"type": "bool",
+			"name": "Log actions",
+			"default": false,
+			"description": "Logs the actions in Geode's Platform Console (or just the geode log files)"
+		}
+	}
+}
