@@ -5,9 +5,10 @@
 	},
 	"id": "jumbonova.better_comment_section",
 	"name": "Better Comment Section",
-	"version": "v1.0.0",
+	"version": "v1.1.0",
 	"developer": "Jumbonova",
 	"description": "Hides spam comments from levels & lists.",
+	"tags": ["interface", "enhancement"],
 	"links": {
 		"community": "https://discord.gg/SKKu5NdMJv",
 		"source": "https://github.com/JumbonovaYT/Better-Comment-Section-GEODE-MOD-"
@@ -40,6 +41,12 @@
 			"name": "Hide ads",
 			"default": true,
 			"description": "Hides comments that ask people to play levels they made."
+		},
+		"Hide links": {
+			"type": "bool",
+			"name": "Hide links",
+			"default": true,
+			"description": "Hides comments that contain links."
 		},
 		"Extra stuff": {
 			"type": "title",
