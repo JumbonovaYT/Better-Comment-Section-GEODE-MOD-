@@ -7,110 +7,91 @@ class $modify(CommentCell) {
 		auto logActions = Mod::get()->getSettingValue<bool>("Log actions");
 
 		bool isHidden = false;
-		auto spambutton = this->getChildByIDRecursive("spam-button"); /*this is why the mod requires 1.14.1 or greater node ids (1.14.1 because it's the latest commentcell update)*/
-		if (spambutton) {
-			isHidden = true;
-		}
-
+		auto spambutton = this->getChildByIDRecursive("spam-button"); // this is why the mod requires node ids 1.14.1
+		if (spambutton) isHidden = true;
+		
 		/*Hide Bot Comments*/
-
 		if (Mod::get()->getSettingValue<bool>("Hide bot comments")) {
 			auto commenter = comment->m_userID;
-
-			if (commenter == 242664076 /*xh2c*/ || commenter == 164866826 /*3eelolbackup*/) { // i believe both of these people's comments got deleted, so i might delete them next update
+			if (commenter == 6412437 /*DevilCru is a ja'kalem bot*/) { // i think the bots in v1.1.0 had their comments deleted
 				if (!isHidden) {
 					isHidden = true;
 					comment->m_isSpam = true;
-					if (logActions) {
-						log::debug("found bot comment");
-					}
+					if (logActions) log::debug("found bot comment");
+					CommentCell::loadFromComment(comment);
+					return;
 				} else {
-					if (logActions) {
-						log::debug("opened bot comment");
-					}
+					if (logActions) log::debug("opened bot comment");
 					comment->m_isSpam = false;
 					isHidden = false;
+					CommentCell::loadFromComment(comment);
+					return;
 				}
 			}
 		}
+		std::string commentstring = comment->m_commentString;
+		std::transform(commentstring.begin(), commentstring.end(), commentstring.begin(), tolower); // this is for brainrot, ads, and link comments. moved it here to use less lines
 
 		/*Hide Brainrot*/
-
 		if (Mod::get()->getSettingValue<bool>("Hide brainrot comments")) {
-			std::string commentstring = comment->m_commentString;
-			std::transform(commentstring.begin(), commentstring.end(), commentstring.begin(), tolower);
-
-			std::regex brainrotWords("skibi(d|t)i|rizz|ohio|gya(t|a)|mew | mew|mog|jelq|goon|sigma"); /*this one got way shorter after trying regex, and mew uses spaces because "somewhere" has mew in it*/
-
+			std::regex brainrotWords("skibi(d|t)i|rizz|ohio|gya(t|a)|mew( +|ing|er)|mog|jelq|goon|sigma|livvy *dunne|baby *gronk|gri(tt|dd)y|fanum *tax|edg(e|ing|er)|(1 *2)? *buckle *my *shoe|huzz|h*a*w*k* *t+u+a+h+"); // WHY ARE THERE SO MANY BRAINROT WORDSSSSS
 			if (std::regex_search(commentstring, brainrotWords)) {
 				if (!isHidden) {
 					isHidden = true;
 					comment->m_isSpam = true;
-					if (logActions) {
-						log::debug("found brainrot comment");
-					}
+					if (logActions) log::debug("found brainrot comment");
+					CommentCell::loadFromComment(comment);
+					return;
 				} else {
-					if (logActions) {
-						log::debug("opened brainrot comment");
-					}
-					comment->m_isSpam = false;
+					if (logActions) log::debug("opened brainrot comment");
 					isHidden = false;
+					comment->m_isSpam = false;
+					CommentCell::loadFromComment(comment);
+					return;
 				}
 			}
 		}
-		
+
 		/*Hide Ads*/
-
 		if (Mod::get()->getSettingValue<bool>("Hide ads")) {
-			std::string commentstring = comment->m_commentString;
-			std::transform(commentstring.begin(), commentstring.end(), commentstring.begin(), tolower);
-
-			std::regex adWords("(play|try) *\\d|(play|try) *(my|this|me) *((recent)?|(new)?|(latest)?) *(est|er)* *(level|lvl)|(click|tap|press|view) *(on *my|my) *(profile|pfp|icon|name)"); // sorry theres kinda a lot
-
+			std::regex adWords("(check *(out)?|play|try|test) *\\d|(check *(out)?|play|try|test) *(my|this|me|the) *((recent)?|(new)?|(latest)?) *(est|er)* *(level|lvl)|(click|tap|press|view|check) *(on *my|my) *(profile|pfp|icon|name|user)"); // sorry theres kinda a lot
 			if (std::regex_search(commentstring, adWords)) {
 				if (!isHidden) {
 					isHidden = true;
 					comment->m_isSpam = true;
-					if (logActions) {
-						log::debug("found ad comment");
-					}
+					if (logActions) log::debug("found ad comment");
+					CommentCell::loadFromComment(comment);
+					return;
 				} else {
-					if (logActions) {
-						log::debug("opened ad comment");
-					}
+					if (logActions) log::debug("opened ad comment");
 					comment->m_isSpam = false;
 					isHidden = false;
+					CommentCell::loadFromComment(comment);
+					return;
 				}
 			}
 		}
 
 		/*Hide Links*/
-
 		if (Mod::get()->getSettingValue<bool>("Hide links")) {
-			std::string commentstring = comment->m_commentString;
-			std::transform(commentstring.begin(), commentstring.end(), commentstring.begin(), tolower);
-
-			std::regex linkWords("https*|(web|www)( *dot|\\.)|(\\.|dot) *gg|(\\.|dot) *com|(\\.|dot) *io|(\\.|dot) *org");
-
+			std::regex linkWords("https*|(web|www)( *dot|\\.)|(\\.|dot *)gg|(\\.|dot) *com|(\\.|dot) *io|(\\.|dot) *org");
 			if (std::regex_search(commentstring, linkWords)) {
 				if (!isHidden) {
 					isHidden = true;
 					comment->m_isSpam = true;
-					if (logActions) {
-						log::debug("found comment with a link");
-					}
+					if (logActions) log::debug("found comment with a link");
+					CommentCell::loadFromComment(comment);
+					return;
 				} else {
-					if (logActions) {
-						log::debug("opened comment with a link");
-					}
+					if (logActions) log::debug("opened comment with a link");
 					comment->m_isSpam = false;
 					isHidden = false;
+					CommentCell::loadFromComment(comment);
+					return;
 				}
 			}
 		}
 	CommentCell::loadFromComment(comment);
 	}
 };
-
-/* i can now say i suck at coding :woohoo:
-thanks to erymanthus for telling me to learn regex */
+// i added all the"CommentCell::loadFromComment(comment)" lines because when blocked bots say a blocked keyword, the comment cant be opened, and sometimes they dont even get blocked
