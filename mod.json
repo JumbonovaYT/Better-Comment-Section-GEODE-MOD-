@@ -1,11 +1,13 @@
 {
-	"geode": "4.0.0",
+	"geode": "4.0.1",
 	"gd": {
-		"win": "2.2074"
+		"win": "2.2074",
+		"mac": "2.2074",
+		"android": "2.2074"
 	},
 	"id": "jumbonova.better_comment_section",
 	"name": "Better Comment Section",
-	"version": "v1.1.0",
+	"version": "v1.1.1",
 	"developer": "Jumbonova",
 	"description": "Hides spam comments from levels & lists.",
 	"tags": ["interface", "enhancement"],
