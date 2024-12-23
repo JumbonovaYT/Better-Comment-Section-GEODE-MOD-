@@ -2,6 +2,7 @@
 - Added a couple new keywords that get blocked.
 - Removed old blocked bots and added 6412437 (DevilCru).
 - Less lines of code (116 -> 97).
+- Now availible on android and mac.
 
 # 1.1.0
 - Keywords now use regex. This also makes new blocked word patterns possible (thank erymanthus).
