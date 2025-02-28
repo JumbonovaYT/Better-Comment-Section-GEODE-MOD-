@@ -7,7 +7,7 @@
 	},
 	"id": "jumbonova.better_comment_section",
 	"name": "Better Comment Section",
-	"version": "v1.1.1",
+	"version": "v1.1.2",
 	"developer": "Jumbonova",
 	"description": "Hides spam comments from levels & lists.",
 	"tags": ["interface", "enhancement"],
@@ -15,11 +15,6 @@
 		"community": "https://discord.gg/SKKu5NdMJv",
 		"source": "https://github.com/JumbonovaYT/Better-Comment-Section-GEODE-MOD-"
 	},
-	"dependencies": [ {
-        "id": "geode.node-ids",
-        "version": ">=v1.14.1",
-        "importance": "required"
-	} ],
 	"settings": {
 		"Features": {
 			"type": "title",
@@ -59,7 +54,7 @@
 			"type": "bool",
 			"name": "Log actions",
 			"default": false,
-			"description": "Logs the actions in Geode's Platform Console (or just the geode log files)"
+			"description": "Logs what comment got blocked and why it did in Geode's Platform Console (or just in the geode log files)"
 		}
 	}
 }
